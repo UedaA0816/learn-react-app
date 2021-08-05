@@ -17,7 +17,9 @@ const Test: React.FC<TestProps> = ({ name }) => {
 					<Link to='/about'>about</Link>
 				</div>
 				<div>
-					<Link to='/dashboard'>dashboard</Link>
+					<Link to='/dashboard' className='bg-gray-400'>
+						dashboard
+					</Link>
 				</div>
 			</div>
 		</div>
