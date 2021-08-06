@@ -1,24 +1,52 @@
-import React from 'react';
-import { Route, Switch, BrowserRouter, Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, BrowserRouter, Link, useLocation } from "react-router-dom";
 
 type TestProps = {
-	name: string;
+	// name: string;
 };
 
-const Test: React.FC<TestProps> = ({ name }) => {
+const Test: React.FC<TestProps> = () => {
+  const location = useLocation<{num:string}>()
+  const [state, setstate] = useState("")
+  console.log(location);
+  useEffect(() => {
+    const num = location.state?.num + location.pathname
+    setstate(num)   
+    console.log("useEffect");
+    
+  }, [location])
+  
 	return (
-		<div>
-			<p>{name}</p>
+		<div className="text-xl whitespace-normal">
+			<p>{location.pathname}</p>
+      <p>{state}</p>
+      <input type="text" value={state} onChange={(change)=>{setstate(change.target.value)}} />
 			<div>
 				<div>
-					<Link to='/'>/</Link>
+					<Link
+						to={{
+							pathname: "/",
+							state: { num: state },
+						}}>
+						/
+					</Link>
 				</div>
 				<div>
-					<Link to='/about'>about</Link>
+        <Link
+						to={{
+							pathname: "/about",
+							state: { num: state },
+						}}>
+						/about
+					</Link>
 				</div>
 				<div>
-					<Link to='/dashboard' className='bg-gray-400'>
-						dashboard
+        <Link
+						to={{
+							pathname: "/dashboard",
+							state: { num: state },
+						}}>
+						/dashboard
 					</Link>
 				</div>
 			</div>
@@ -31,13 +59,13 @@ const App: React.FC = () => {
 		<BrowserRouter>
 			<Switch>
 				<Route exact path='/'>
-					<Test name='/' />
+					<Test/>
 				</Route>
 				<Route path='/about'>
-					<Test name='/about' />
+					<Test/>
 				</Route>
 				<Route path='/dashboard'>
-					<Test name='/dashboard' />
+					<Test/>
 				</Route>
 			</Switch>
 		</BrowserRouter>

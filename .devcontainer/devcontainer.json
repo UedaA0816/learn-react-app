@@ -55,7 +55,8 @@
     "humao.rest-client",
     "wayou.vscode-icons-mac",
     "bradlc.vscode-tailwindcss",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "dsznajder.es7-react-js-snippets"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
