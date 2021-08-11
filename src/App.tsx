@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, BrowserRouter, Link, useLocation } from "react-router-dom";
+import { Route, Switch, BrowserRouter, Link, useLocation, Redirect } from "react-router-dom";
+import Home from './pages/Home/Home';
+import Index from './pages/Index/Index';
+import Login from './pages/Login/Login';
 
 type TestProps = {
 	// name: string;
@@ -55,18 +58,22 @@ const Test: React.FC<TestProps> = () => {
 };
 
 const App: React.FC = () => {
+  const authenticated = false
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path='/'>
-					<Test/>
+				<Route path='/home' exact>
+					<Home/>
 				</Route>
-				<Route path='/about'>
-					<Test/>
+				<Route path='/login' exact>
+					<Login/>
 				</Route>
-				<Route path='/dashboard'>
-					<Test/>
-				</Route>
+        <Route path='/' exact>
+          <Index />
+        </Route>
+				<Route>
+          {authenticated ? <Redirect to="/home" /> : <Redirect to="/" />}
+        </Route>
 			</Switch>
 		</BrowserRouter>
 	);
