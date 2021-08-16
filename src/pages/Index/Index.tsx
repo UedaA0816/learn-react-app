@@ -1,7 +1,10 @@
 import React from "react"
+import { useRecoilValue } from "recoil"
+import { titleState } from "../../atoms/TitleAtom"
 
 const Index:React.FC = () => {
-  return <div>Index</div>
+  const title = useRecoilValue(titleState)
+  return <div>Index:{title}</div>
 }
 
 export default Index
