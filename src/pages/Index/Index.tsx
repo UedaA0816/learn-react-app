@@ -7,4 +7,7 @@ const Index:React.FC = () => {
   return <div>Index:{title}</div>
 }
 
+
+
+
 export default Index
